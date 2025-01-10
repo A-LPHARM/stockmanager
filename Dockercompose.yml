@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  shopfront:
+    image: henriksin1/shopfront:v1
+    ports:
+      - "8010:8010"
+    links:
+      - stockmanager
+      - productcatalogue
+  productcatalogue:
+    image: henriksin1/productcatalogue:v1
+    ports:
+      - "8020:8020"
+  stockmanager:
+    image: henriksin1/stockmanager:v1
+    ports:
+      - "8030:8030" 
