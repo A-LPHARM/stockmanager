@@ -3,7 +3,6 @@ name: Stockmanager-Java-CI
 on:
   push:
     branches: [ "main" ]
-    paths: /stockmanager/**
 
 jobs:
   build:
