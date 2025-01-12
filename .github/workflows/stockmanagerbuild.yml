@@ -1,4 +1,4 @@
-name: StockmanagerJava CI with Maven, and Docker Build and Push
+name: Stockmanager-Java-CI
 
 on:
   push:
