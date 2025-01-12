@@ -2,8 +2,10 @@ name: productcatalogue Java CI
 
 on:
   push:
-    branches: [ "main" ]
-    paths: ./productcatalogue/**
+    branches: 
+      - main
+    paths: 
+      - productcatalogue/**
 
 jobs:
   build:
