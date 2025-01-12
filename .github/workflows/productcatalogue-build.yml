@@ -1,4 +1,4 @@
-name: productcatalogue Java CI with Maven, and Docker Build and Push
+name: productcatalogue Java CI 
 
 on:
   push:
