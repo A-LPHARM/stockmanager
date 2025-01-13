@@ -37,4 +37,4 @@ jobs:
         context: stockmanager/.
         file: stockmanager/Dockerfile
         push: true
-        tags: henriskin1/stockmanager:v1
+        tags: henriksin1/stockmanager:v1
