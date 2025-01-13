@@ -1,4 +1,4 @@
-name: Stockmanager-Java-CI
+name: Shopfront-Java-CI
 
 on:
   push:
