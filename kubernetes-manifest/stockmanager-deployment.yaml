@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: stockmanager
-  replicas: 5
+  replicas: 3
   template:
     metadata:
       labels:
@@ -16,9 +16,10 @@ spec:
       - name: stockmanager
         image: henriksin1/stockmanager:v1
         resources:
+          requests:
+            memory: "1024Mi"
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "1024Mi"
         ports:
         - containerPort: 8030
         livenessProbe:
@@ -33,7 +34,7 @@ kind: Service
 metadata:
   name: stockmanager
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: stockmanager
   ports:
