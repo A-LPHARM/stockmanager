@@ -17,17 +17,18 @@ spec:
         image: henriksin1/productcatalogue:v1
         resources:
           requests:
-            memory: "1024Mi"
+            memory: "256Mi"
           limits:
-            memory: "1024Mi"
+            memory: "512Mi"
         ports:
         - containerPort: 8020
-        livenessProbe:
+        readinessProbe:
           httpGet:
-            path: /healthcheck
+            path: /
             port: 8025
-          initialDelaySeconds: 30
-          timeoutSeconds: 1
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
 ---
 apiVersion: v1
 kind: Service

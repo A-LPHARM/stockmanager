@@ -17,14 +17,15 @@ spec:
         image: henriksin1/stockmanager:v1
         resources:
           requests:
-            memory: "1024Mi"
+            memory: "256Mi"
+            cpu: "250m"
           limits:
-            memory: "1024Mi"
+            memory: "512Mi"
         ports:
         - containerPort: 8030
         livenessProbe:
           httpGet:
-            path: /healthcheck
+            path: /health
             port: 8030
           initialDelaySeconds: 30
           timeoutSeconds: 1
