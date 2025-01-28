@@ -6,12 +6,20 @@ on:
       - main
 
 jobs:
-  build:
+  build-deploy:
 
     runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: install kubectl
+      uses: azure/setup-kubectl@v4
+      with:
+        version: 'v1.24.0' # default is latest stable
+      id: install
+
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
@@ -39,3 +47,17 @@ jobs:
         file: productcatalogue/Dockerfile
         push: true
         tags: henriksin1/productcatalogue:v1
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    
+    - name: update kube config
+      run: aws eks --region us-east-1 update-kubeconfig --name cluster-test
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f kubernetes-manifest/productcatalogue-deployment.yaml
